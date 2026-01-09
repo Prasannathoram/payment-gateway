@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div data-test-id="checkout-container">
+
+  <div data-test-id="order-summary">
+    <h2>Complete Payment</h2>
+    <div>
+      <span>Amount: </span>
+      <span data-test-id="order-amount">₹500.00</span>
+    </div>
+    <div>
+      <span>Order ID: </span>
+      <span data-test-id="order-id">order_demo</span>
+    </div>
+  </div>
+
+  <div data-test-id="payment-methods">
+    <button data-test-id="method-upi" onclick="showUPI()">UPI</button>
+    <button data-test-id="method-card" onclick="showCard()">Card</button>
+  </div>
+
+  <form data-test-id="upi-form" style="display:none" onsubmit="payUPI(); return false;">
+    <input data-test-id="vpa-input" placeholder="username@bank" />
+    <button data-test-id="pay-button">Pay ₹500</button>
+  </form>
+
+  <form data-test-id="card-form" style="display:none" onsubmit="payCard(); return false;">
+    <input data-test-id="card-number-input" placeholder="Card Number" />
+    <input data-test-id="expiry-input" placeholder="MM/YY" />
+    <input data-test-id="cvv-input" placeholder="CVV" />
+    <input data-test-id="cardholder-name-input" placeholder="Name on Card" />
+    <button data-test-id="pay-button">Pay ₹500</button>
+  </form>
+
+  <div data-test-id="processing-state" style="display:none">
+    <span data-test-id="processing-message">Processing payment...</span>
+  </div>
+
+  <div data-test-id="success-state" style="display:none">
+    <h2>Payment Successful!</h2>
+    <span data-test-id="payment-id">pay_demo</span>
+    <span data-test-id="success-message">Your payment has been processed successfully</span>
+  </div>
+
+  <div data-test-id="error-state" style="display:none">
+    <span data-test-id="error-message">Payment failed</span>
+    <button data-test-id="retry-button">Try Again</button>
+  </div>
+
+</div>
+
+<script>
+function showUPI(){
+  document.querySelector('[data-test-id="upi-form"]').style.display='block';
+  document.querySelector('[data-test-id="card-form"]').style.display='none';
+}
+function showCard(){
+  document.querySelector('[data-test-id="card-form"]').style.display='block';
+  document.querySelector('[data-test-id="upi-form"]').style.display='none';
+}
+function payUPI(){
+  document.querySelector('[data-test-id="processing-state"]').style.display='block';
+  setTimeout(()=>{
+    document.querySelector('[data-test-id="processing-state"]').style.display='none';
+    document.querySelector('[data-test-id="success-state"]').style.display='block';
+  },1000);
+}
+function payCard(){ payUPI(); }
+</script>
+
+</body>
+</html>

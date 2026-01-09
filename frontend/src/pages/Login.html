@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form data-test-id="login-form" onsubmit="login(); return false;">
+  <input data-test-id="email-input" type="email" placeholder="Email" />
+  <input data-test-id="password-input" type="password" placeholder="Password" />
+  <button data-test-id="login-button">Login</button>
+</form>
+
+<script>
+function login() {
+  window.location.href = "/dashboard.html";
+}
+</script>
+</body>
+</html>
